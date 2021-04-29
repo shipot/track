@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script>window._utk_timing=[new Date()];</script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>访问统计测试</title>
+<style>
+* { margin:0; padding:0; }
+.test { font-size:14px; padding-bottom:20px; }
+.test h3 { line-height:40px; padding:0 10px; font-size:16px; background-color:#eee; }
+.test p { padding:10px; overflow:hidden; }
+.test p + p { padding-top:0; }
+.test p > a { float:left; border:solid 1px #ccc; line-height:32px; padding:0 10px; margin:5px; text-decoration:none; }
+.test p > a > img { display:block; width:70px; height:70px; margin:0 -10px; }
+.test p > button { line-height:40px; padding:0 10px; }
+.test p > input { height:40px; padding:0 10px; }
+.test p > span { float:left; border:solid 1px #eee; line-height:32px; padding:0 10px; margin:5px; }
+.test ul { padding:10px; list-style:none; overflow:hidden; }
+.test ul li { float:left; border:solid 1px #eee; line-height:32px; padding:0 10px; margin:5px; }
+</style>
+<script>_utk_timing.push(new Date());</script>
+</head>
+<body>
+<div class="test">
+  <h3>链接测试</h3>
+  <p>
+    <a href="http://www.ule.com/" target="_blank">测试链接1</a>
+    <a href="http://www.ule.com/" target="_blank" data-statobj="listingId:80024532">测试链接2</a>
+    <a href="http://www.ule.com/" target="_blank" data-statobj="listingId:80024534;storeId:5078">测试链接3</a>
+  </p>
+  <p>
+    <a href="//item.ule.com/item/3368067-0-1.html" target="_blank">
+      <img src="//pic3.ulecdn.com/item/user_0102/desc20190305/a57bca799407da04_-1x-1.jpg" alt="测试商品001-alt" />
+    </a>
+    <a href="//item.ule.com/item/3368067-0-1.html" target="_blank" title="测试商品002-tit">
+      <img src="//pic3.ulecdn.com/item/user_0102/desc20190305/a57bca799407da04_-1x-1.jpg" />
+    </a>
+    <a href="//item.ule.com/item/3368067-0-1.html" target="_blank" title="测试商品003-tit">
+      <img src="//pic3.ulecdn.com/item/user_0102/desc20190305/a57bca799407da04_-1x-1.jpg" alt="测试商品003-alt" />
+    </a>
+    <a href="//item.ule.com/item/3368067-0-1.html" target="_blank" data-statobj="listingId:80024534;storeId:5078">
+      <img src="//pic3.ulecdn.com/item/user_0102/desc20190305/a57bca799407da04_-1x-1.jpg" />
+    </a>
+  </p>
+  <h3>按钮测试</h3>
+  <p>
+    <button>Button按钮1</button>
+    <button data-statobj="dwUserId:1234;dwDeviceId:zhouxiong;dwTestId:abcd">Button按钮2</button>
+  </p>
+  <p>
+    <input type="button" value="input按钮" />
+    <input type="submit" value="submit按钮" data-statobj="listingId:80024534;storeId:5078" />
+    <input type="reset" value="reset按钮" />
+  </p>
+  <h3>data-stat自定义埋点</h3>
+  <p>
+    <span data-stat="">SPAN标签1</span>
+    <span data-stat="stat-SPAN标签2" data-statobj="listingId:80024534;storeId:5078">SPAN标签2</span>
+    <div style="margin:0 10px;line-height:40px;border:solid 1px #ccc;text-align:center;" data-stat="stat-DIV标签1">DIV标签1</div>
+  </p>
+  <h3>HashChange</h3>
+  <ul>
+    <li><a href="#hashtest1" onclick="window._utk_hashdata = {listingId:'11'};">hashtest1</a></li>
+    <li><a href="#hashtest2" onclick="window._utk_hashdata = {listingId:'12'};">hashtest2</a></li>
+    <li><a href="#hashtest3" onclick="window._utk_hashdata = {listingId:'13'};">hashtest3</a></li>
+    <li><a href="#hashtest4" onclick="window._utk_hashdata = {listingId:'14'};">hashtest4</a></li>
+    <li><a href="#hashtest5" onclick="window._utk_hashdata = {storeId:'11'};">hashtest5</a></li>
+    <li><a href="#hashtest6" onclick="window._utk_hashdata = {storeId:'12'};">hashtest6</a></li>
+    <li><a href="#hashtest7" onclick="window._utk_hashdata = {storeId:'13'};">hashtest7</a></li>
+    <li><a href="#hashtest8" onclick="window._utk_hashdata = {storeId:'14'};">hashtest8</a></li>
+  </ul>
+</div>
+
+<!-- 常规统计 -->
+<!--<script>-->
+<!--// 全局变量说明-->
+<!--// _utk_stat = {} 初始参数对象，用于提交PV时收集自定义字段（字段必须为track.js中定义过的）-->
+<!--// _utk_showconsole，用于控制是否显示consolelog-->
+<!--// _utk_hashstat，用于控制是否开启多路由单页应用的页面切换统计（自动PV统计）。-->
+<!--// _utk_autostat，用于控制是否开启所有a/button的点击统计，没设置只统计包含data-stat自定义属性的点击-->
+<!--// _utk_hashdata，用于hash切换时，提交PV时一起提交extdata-->
+<!--// _utk_pageview='no'时，页面打开时，不自动提交PV-->
+<!--var _utk_showconsole = true;-->
+<!--var _utk_autostat = true;-->
+<!--var _utk_hashstat = true;-->
+<!--</script>-->
+
+<!--<script>-->
+<!--window._utk_stat = window._utk_stat || {};-->
+<!--_utk_stat.appkey = '0b8055c0f65243658d6ccf600acbdf66';-->
+<!--</script>-->
+<script src="ua-parser.js"></script>
+<script src="track.js"></script>
+<!--<script>
+//自定义提交pageview
+window._uletrack && window._uletrack.trackPageview(pageType, action, value, extend, params)
+//自定义提交event
+window._uletrack && window._uletrack.trackEvent(pageType, action, value, extend, params)
+</script>-->
+</body>
+</html>

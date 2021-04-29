@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+
+	<Properties>
+		<Property name="LOG_PATH">/data/logs/tomcat/pvdata</Property>
+	</Properties>
+
+	<Appenders>
+		<!-- common -->
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss}|%msg%n" />
+		</Console>
+		<RollingFile name="RollingFile" fileName="${LOG_PATH}/normal"
+			filePattern="${LOG_PATH}/normal_%d{yyyy-MM-dd}.log">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss}|%msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" />
+			</Policies>
+		</RollingFile>
+		<!-- Track V1 -->
+		<RollingFile name="Rolling-File-Track-V1" fileName="${LOG_PATH}/pvdata_v1"
+			filePattern="${LOG_PATH}/pvdata_v1_%d{yyyy-MM-dd}.log">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss}|%msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" />
+			</Policies>
+		</RollingFile>
+		<Kafka name="Kafka-Track-V1" key="$${date:yyyy-MM-dd HH:mm:ss}" topic="ULE_ACCESS_LOG_TRACKER">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss}|%msg" />
+			<Property name="bootstrap.servers">172.25.152.111:9092,172.25.152.112:9092,172.25.152.121:9092</Property>
+		</Kafka>
+		<Async name="Async-Kafka-Track-V1">
+			<AppenderRef ref="Kafka-Track-V1" />
+		</Async>
+		<!-- Track V2 -->
+		<RollingFile name="Rolling-File-Track-V2" fileName="${LOG_PATH}/pvdata_v2"
+			filePattern="${LOG_PATH}/pvdata_v2_%d{yyyy-MM-dd}.log">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss}|%msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" />
+			</Policies>
+		</RollingFile>
+		<Kafka name="Kafka-Track-V2" key="$${date:yyyy-MM-dd HH:mm:ss}" topic="ULE_ACCESS_LOG_TRACKER_V2">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss}|%msg" />
+			<Property name="bootstrap.servers">rzkafka7.node1.prd.uledns.com:9092,rzkafka7.node2.prd.uledns.com:9092,rzkafka7.node3.prd.uledns.com:9092</Property>
+		</Kafka>
+		<Async name="Async-Kafka-Track-V2">
+			<AppenderRef ref="Kafka-Track-V2" />
+		</Async>
+	</Appenders>
+
+	<Loggers>
+		<Root level="INFO">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="RollingFile" />
+		</Root>
+		<Logger name="com.ule.track.action.TrackV1Servlet" level="INFO" additivity="false">
+			<AppenderRef ref="Rolling-File-Track-V1" />
+			<AppenderRef ref="Async-Kafka-Track-V1" />
+		</Logger>
+		<Logger name="com.ule.track.action.TrackV2Servlet" level="INFO" additivity="false">
+			<AppenderRef ref="Rolling-File-Track-V2" />
+			<AppenderRef ref="Async-Kafka-Track-V2" />
+		</Logger>
+		<Logger name="com.ule.track.action.TrackBatchV2Servlet" level="INFO" additivity="false">
+			<AppenderRef ref="Rolling-File-Track-V2" />
+			<AppenderRef ref="Async-Kafka-Track-V2" />
+		</Logger>
+	</Loggers>
+	
+
+</Configuration>
